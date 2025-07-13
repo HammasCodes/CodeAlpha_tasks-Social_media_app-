@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Feed</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles/layout.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body class="min-h-screen bg-[#f1f3f5]">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-blue-600">SocialElite</h1>
+    <button onclick="logout()" class="text-red-500 hover:underline">Logout</button>
+  </nav>
+
+  <!-- Content -->
+  <main class="max-w-2xl mx-auto mt-8 px-4">
+
+    <!-- Post Creator -->
+    <div class="card">
+      <textarea id="content" placeholder="What's on your mind?" class="input" rows="3"></textarea>
+      <button onclick="createPost()" class="button w-full">Post</button>
+    </div>
+
+    <!-- Feed -->
+    <div id="feed-container" class="mt-4"></div>
+  </main>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>

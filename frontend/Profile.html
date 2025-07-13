@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <h2>User Profile</h2>
+  <div id="user-info"></div>
+  <div id="user-posts"></div>
+  <button id="followBtn" onclick="toggleFollow()">Follow</button>
+
+  <script>
+    const token = localStorage.getItem("token");
+    const userId = new URLSearchParams(window.location.search).get("id");
+
+    let isFollowing = false;
+
+    async function loadProfile() {
+      const res = await fetch(`http://localhost:5000/api/users/${userId}`);
+      const data = await res.json();
+
+      document.getElementById("user-info").innerHTML = `
+        <h3>${data.user.username}</h3>
+        <p>Followers: ${data.user.followers.length}</p>
+        <p>Following: ${data.user.following.length}</p>
+      `;
+
+      const postList = data.posts.map(p => `<p>${p.content}</p><hr/>`).join("");
+      document.getElementById("user-posts").innerHTML = postList;
+    }
+
+    async function toggleFollow() {
+      const url = isFollowing ? "unfollow" : "follow";
+      await fetch(`http://localhost:5000/api/users/${userId}/${url}`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      isFollowing = !isFollowing;
+      loadProfile();
+    }
+
+    loadProfile();
+  </script>
+</body>
+</html>

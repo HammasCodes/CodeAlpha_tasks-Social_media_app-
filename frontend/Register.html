@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles/layout.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#f1f3f5] flex justify-center items-center min-h-screen font-[Inter]">
+
+  <div class="card w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-6 text-center text-green-600">Create Your Account</h2>
+
+    <input id="username" type="text" placeholder="Username" class="input" />
+    <input id="email" type="email" placeholder="Email" class="input" />
+    <input id="password" type="password" placeholder="Password" class="input" />
+
+    <button onclick="register()" class="button w-full bg-green-500 hover:bg-green-600">Register</button>
+
+    <p class="mt-4 text-center text-sm">
+      Already have an account?
+      <a href="login.html" class="text-blue-500 hover:underline">Login</a>
+    </p>
+  </div>
+
+  <script src="scripts/auth.js"></script>
+</body>
+</html>
